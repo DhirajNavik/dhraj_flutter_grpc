@@ -33,8 +33,12 @@ message AuthResponse {
   string token = 1;
   User user = 2;
 }
+message SuccessResponse {
+  string message = 1;
+}
 
 service AuthService {
-  rpc Register(RegisterRequest) returns (AuthResponse);
+  rpc RegisterStudent(RegisterRequest) returns (SuccessResponse);
+  rpc RegisterTeacher(RegisterRequest) returns (SuccessResponse);
   rpc Login(LoginRequest) returns (AuthResponse);
 }

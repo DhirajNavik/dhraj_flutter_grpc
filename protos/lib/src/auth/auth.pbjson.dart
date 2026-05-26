@@ -95,3 +95,15 @@ const AuthResponse$json = {
 final $typed_data.Uint8List authResponseDescriptor = $convert.base64Decode(
     'CgxBdXRoUmVzcG9uc2USFAoFdG9rZW4YASABKAlSBXRva2VuEhkKBHVzZXIYAiABKAsyBS5Vc2'
     'VyUgR1c2Vy');
+
+@$core.Deprecated('Use successResponseDescriptor instead')
+const SuccessResponse$json = {
+  '1': 'SuccessResponse',
+  '2': [
+    {'1': 'message', '3': 1, '4': 1, '5': 9, '10': 'message'},
+  ],
+};
+
+/// Descriptor for `SuccessResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List successResponseDescriptor = $convert.base64Decode(
+    'Cg9TdWNjZXNzUmVzcG9uc2USGAoHbWVzc2FnZRgBIAEoCVIHbWVzc2FnZQ==');

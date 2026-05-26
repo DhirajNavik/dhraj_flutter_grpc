@@ -366,6 +366,59 @@ class AuthResponse extends $pb.GeneratedMessage {
   User ensureUser() => $_ensure(1);
 }
 
+class SuccessResponse extends $pb.GeneratedMessage {
+  factory SuccessResponse({
+    $core.String? message,
+  }) {
+    final result = create();
+    if (message != null) result.message = message;
+    return result;
+  }
+
+  SuccessResponse._();
+
+  factory SuccessResponse.fromBuffer($core.List<$core.int> data,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromBuffer(data, registry);
+  factory SuccessResponse.fromJson($core.String json,
+          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
+      create()..mergeFromJson(json, registry);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      _omitMessageNames ? '' : 'SuccessResponse',
+      createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'message')
+    ..hasRequiredFields = false;
+
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  SuccessResponse clone() => deepCopy();
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
+  SuccessResponse copyWith(void Function(SuccessResponse) updates) =>
+      super.copyWith((message) => updates(message as SuccessResponse))
+          as SuccessResponse;
+
+  @$core.override
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static SuccessResponse create() => SuccessResponse._();
+  @$core.override
+  SuccessResponse createEmptyInstance() => create();
+  @$core.pragma('dart2js:noInline')
+  static SuccessResponse getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<SuccessResponse>(create);
+  static SuccessResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get message => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set message($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasMessage() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearMessage() => $_clearField(1);
+}
+
 const $core.bool _omitFieldNames =
     $core.bool.fromEnvironment('protobuf.omit_field_names');
 const $core.bool _omitMessageNames =

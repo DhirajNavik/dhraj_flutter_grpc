@@ -1,8 +1,6 @@
-/// Support for doing something awesome.
-///
-/// More dartdocs go here.
 library;
 
-export 'src/protos_base.dart';
-
-// TODO: Export any libraries intended for clients of this package.
+export 'src/auth/auth.pb.dart';
+export 'src/auth/auth.pbenum.dart';
+export 'src/auth/auth.pbgrpc.dart';
+export 'src/auth/auth.pbjson.dart';

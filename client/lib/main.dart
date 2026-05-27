@@ -1,5 +1,6 @@
 import 'package:client/feature/auth/data/datasources/auth_datasource_grpc.dart';
 import 'package:client/feature/auth/data/repositories/auth_repository_impl.dart';
+import 'package:client/feature/auth/domain/params/login_params.dart';
 import 'package:client/feature/auth/domain/params/register_params.dart';
 import 'package:client/feature/auth/domain/usecases/student_register.dart';
 import 'package:client/feature/auth/domain/usecases/user_login.dart';
@@ -46,26 +47,51 @@ class _MainAppState extends State<MainApp> {
           create: (_) => AuthBloc(loginUseCase, studentRegisterUseCase),
         ),
       ],
-      child: MaterialApp(
-        home: Scaffold(
-          body: Center(
-            child: ElevatedButton(
-              onPressed: () {
-                context.read<AuthBloc>().add(
-                  AuthEvent.registerStudent(
-                    StudentRegisterParams(
-                      name: "Dhiraj Navik",
-                      email: "dhiraj@gmail.com",
-                      password: "123@Dhiraj",
-                      phone: "9866717428",
+      child: Builder(
+        builder: (context) {
+          return MaterialApp(
+            home: Scaffold(
+              body: Column(
+                mainAxisAlignment: .center,
+                crossAxisAlignment: .center,
+                children: [
+                  Center(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        context.read<AuthBloc>().add(
+                          AuthEvent.registerStudent(
+                            StudentRegisterParams(
+                              name: "Dhiraj Navik",
+                              email: "dhiraj@gmail.com",
+                              password: "123@Dhiraj",
+                              phone: "9866717428",
+                            ),
+                          ),
+                        );
+                      },
+                      child: Text("Register"),
                     ),
                   ),
-                );
-              },
-              child: Text("Register"),
+
+                  ElevatedButton(
+                    onPressed: () {
+                      context.read<AuthBloc>().add(
+                        AuthEvent.loginSubmitted(
+                          LoginParams(
+                            // name: "Dhiraj Navik",
+                            identifier: "dhiraj@gmail.com",
+                            password: "123@Dhiraj",
+                          ),
+                        ),
+                      );
+                    },
+                    child: Text("Login"),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ),
+          );
+        },
       ),
     );
   }

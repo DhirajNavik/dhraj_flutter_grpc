@@ -207,8 +207,8 @@ return $default(_that.id,_that.name,_that.isActive);case _:
 /// @nodoc
 
 
-class _UserModel implements UserModel {
-  const _UserModel({required this.id, required this.name, this.isActive = false});
+class _UserModel extends UserModel {
+  const _UserModel({required this.id, required this.name, this.isActive = false}): super._();
   
 
 @override final  String id;

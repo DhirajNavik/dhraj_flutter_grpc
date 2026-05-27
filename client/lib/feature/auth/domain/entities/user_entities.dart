@@ -1,4 +1,4 @@
-class UserEntity {
+abstract class UserEntity {
   final String id;
   final String name;
   final bool isActive;

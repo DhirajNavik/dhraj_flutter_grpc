@@ -14,4 +14,6 @@ class UserLoginUseCase implements UseCase<UserEntity, LoginParams> {
   Future<Either<Failure, UserEntity>> call(LoginParams params) {
     return authRepository.login(params);
   }
+
+  
 }

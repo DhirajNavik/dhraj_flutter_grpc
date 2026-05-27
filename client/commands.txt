@@ -1,0 +1,21 @@
+generate freezed models 
+dart run build_runner build
+
+
+Example : 
+
+// part 'user_model.freezed.dart';
+// part 'user_model.g.dart';
+
+// @freezed
+// abstract class UserModel with _$UserModel {
+//   const factory UserModel({
+//     @Default("") @JsonKey(name: "id") required String id,
+//     required String name,
+//     required String token,
+//     @Default(false) bool isActive,
+//   }) = _UserModel;
+
+//   factory UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
+
+// }

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:client/feature/auth/domain/params/login_params.dart';
@@ -16,7 +17,8 @@ part 'auth_state.dart';
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final UserLoginUseCase _loginUseCase;
   final StudentRegisterUseCase _studentRegisterUseCase;
-  AuthBloc(this._loginUseCase, this._studentRegisterUseCase) : super(const AuthState.initial()) {
+  AuthBloc(this._loginUseCase, this._studentRegisterUseCase)
+    : super(const AuthState.initial()) {
     on<AuthLoginSubmitted>(_onAuthLoginSubmitted);
     on<AuthRegisterStudent>(_onAuthRegisterStudent);
   }
@@ -29,8 +31,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     final result = await _loginUseCase(event.params);
 
+    log(result.toString(),name: "---------->");
+
     result.match(
       (failure) {
+        log("Im Here");
         emit(AuthState.error(failure.message));
       },
       (user) {
@@ -42,7 +47,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   FutureOr<void> _onAuthRegisterStudent(
     AuthRegisterStudent event,
     Emitter<AuthState> emit,
-  ) async{
+  ) async {
     emit(const AuthState.loading());
 
     final result = await _studentRegisterUseCase(event.params);
@@ -52,9 +57,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(AuthState.error(failure.message));
       },
       (message) {
-        emit(AuthState.registerStudnet(message));
+        emit(AuthState.registerStudent(message));
       },
     );
-
   }
 }

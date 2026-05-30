@@ -5,7 +5,7 @@ abstract class AuthState with _$AuthState {
   const factory AuthState.initial() = _Initial;
   const factory AuthState.loading() = _Loading;
   const factory AuthState.authenticated(UserEntity user) = _Authenticated;
-  const factory AuthState.registerStudnet(String user) = _Messgae;
+  const factory AuthState.registerStudent(String user) = _Messgae;
 
   const factory AuthState.error(String message) = _Error;
 }

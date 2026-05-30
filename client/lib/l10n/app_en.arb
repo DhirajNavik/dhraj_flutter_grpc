@@ -1,0 +1,31 @@
+{
+
+  "language":"English",
+
+
+
+  "parent_and_student_portal":"Parent & Student Portal",
+  "student_id_admission_number":"Student ID / Admission Number",
+  "please_provide_login_id":"Please provide login id",
+  "password":"Password",
+  "enter_password":"Enter Password",
+  "parent_student_sign_in_info":"Use your child's student ID and password provided by the teacher.",
+  "staff_portal":"Staff Portal",
+  "email_teacher_id":"Email or Teacher ID",
+  "use_your_teacher_id":"Use your Teacher ID (e.g., JOHN-MATH)",
+  "teacher":"Teacher",
+  "use_your_email_address":"Use your email address",
+  "admin":"Admin",
+  "sign_in":"Sign In",
+  "staff_login":"Staff Login",
+  "parent_students":"Parent / Student",
+
+  "homework_desc":"View assigned homework and due dates",
+  "past_homework":"Past Homework (total_homework)",
+    "@past_homework": {
+      "placeholders": {
+        "total_homework": {}
+      }
+    }
+
+}

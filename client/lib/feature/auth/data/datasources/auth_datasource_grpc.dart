@@ -1,8 +1,8 @@
 import 'package:client/core/errors/exception.dart';
+import 'package:client/feature/auth/data/models/login_model.dart';
 import 'package:client/feature/auth/domain/params/register_params.dart';
 import 'package:protos/protos.dart';
 import '../../domain/datasources/auth_datasource.dart';
-import '../models/user_model.dart';
 import '../../domain/params/login_params.dart';
 
 class AuthDatasourceGrpc implements AuthDataSource {
@@ -11,10 +11,10 @@ class AuthDatasourceGrpc implements AuthDataSource {
   AuthDatasourceGrpc(this._stub);
 
   @override
-  Future<UserModel> login(LoginParams model) async {
+  Future<LoginModel> login(LoginParams model) async {
     try {
       final result = await _stub.login(model.toProto());
-      return UserModel.fromProto(result.user);
+      return LoginModel.fromProto(result);
     } on GrpcError catch (e) {
       throw ServerException(e.message ?? "Something went wrong");
     }

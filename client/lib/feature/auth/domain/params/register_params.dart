@@ -13,8 +13,8 @@ class StudentRegisterParams {
     required this.phone,
   });
 
-  proto.RegisterRequest toProto() {
-    return proto.RegisterRequest(
+  proto.RegisterStudentRequest toProto() {
+    return proto.RegisterStudentRequest(
       name: name,
       email: email,
       password: password,

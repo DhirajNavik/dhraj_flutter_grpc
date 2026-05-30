@@ -2,11 +2,11 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:client/feature/auth/domain/entities/login_entities.dart';
 import 'package:client/feature/auth/domain/params/login_params.dart';
 import 'package:client/feature/auth/domain/params/register_params.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../domain/entities/user_entities.dart';
 import '../../domain/usecases/student_register.dart';
 import '../../domain/usecases/user_login.dart';
 
@@ -38,8 +38,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         log("Im Here");
         emit(AuthState.error(failure.message));
       },
-      (user) {
-        emit(AuthState.authenticated(user));
+      (response) {
+        emit(AuthState.authenticated(response));
       },
     );
   }

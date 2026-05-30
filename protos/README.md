@@ -1,39 +1,75 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+## GRPC
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages). 
+Why Protocol Buffer
+    - Binary format
+    - Smaller message
+    - Faster Processing
+    - Strong Schema
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages). 
--->
+WorkFlow
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+    .Proto -> ProtoCompiler ->Generated code (Dart,Go,etc..)
 
-## Features
+Basic Example
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+syantax = "proto3"
 
-## Getting started
+package user;
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+["Message_here_is_a_data_structure"]
 
-## Usage
+message User {
+    string name = 1;
+    int32 age =2;
+    repeated string data = 3;
+}
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
+no -1,0 field number start from 1,2,3....
 
-```dart
-const like = 'sample';
-```
+-> Data Types
 
-## Additional information
+string
+int32
+int64
+bool
+float
+double
+bytes
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+-> Array or list 
+
+repeated String data = ["Go","Dart"]
+
+-> Maps
+
+map<string,int32> marks = 4
+
+example : {"math":90,"english":50}
+
+-> nested messaged
+
+message User {
+    message Address {
+        string city = 1;
+        string country = 2;
+    }
+    string name = 1;
+    Address address = 2;
+}
+
+-> required / optional 
+
+in proto3 fields are optional by default
+
+-> reserved fields
+
+message User{
+
+    reserved 3;
+    reserved "old_field";
+
+}
+
+- if want to remove some fields mark reserved for backward compatibility
+
+

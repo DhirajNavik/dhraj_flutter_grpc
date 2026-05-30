@@ -9,8 +9,9 @@ import 'env.dart';
 class AuthServices extends AuthServiceBase {
   final MongoService mogoservice;
   AuthServices(this.mogoservice);
+
   @override
-  Future<AuthResponse> login(ServiceCall call, LoginRequest request) async {
+  Future<LoginResponse> login(ServiceCall call, LoginRequest request) async {
     try {
       final usersCollection = mogoservice.collection(Collections.users);
 
@@ -26,7 +27,9 @@ class AuthServices extends AuthServiceBase {
       }
 
       if (!(userData["is_active"] ?? false)) {
-        throw GrpcError.permissionDenied("Account disabled, please contact ADMIN");
+        throw GrpcError.permissionDenied(
+          "Account disabled, please contact ADMIN",
+        );
       }
 
       final pepper = env['PASSWORD_PEPPER'];
@@ -49,17 +52,17 @@ class AuthServices extends AuthServiceBase {
         role: UserRole.valueOf(userData["role"])?.name ?? "UNKNOWN",
       );
 
-      final user = User(
-        id: userData["_id"].toString(),
-        name: userData["name"] ?? "",
-        username: userData["username"] ?? "",
-        email: userData["email"] ?? "",
-        phone: userData["phone"] ?? "",
-        role: UserRole.valueOf(userData["role"]) ?? UserRole.UNKNOWN,
-        isActive: userData["is_active"] ?? false,
-      );
-
-      return AuthResponse(token: token, user: user);
+      // final user = User(
+      //   id: userData["_id"].toString(),
+      //   name: userData["name"] ?? "",
+      //   username: userData["username"] ?? "",
+      //   email: userData["email"] ?? "",
+      //   phone: userData["phone"] ?? "",
+      //   role: UserRole.valueOf(userData["role"]) ?? UserRole.UNKNOWN,
+      //   isActive: userData["is_active"] ?? false,
+      // );
+      final userRole = UserRole.valueOf(userData["role"]) ?? UserRole.UNKNOWN;
+      return LoginResponse(token: token, role: userRole);
     } on GrpcError {
       rethrow;
     } catch (e, stackTrace) {
@@ -70,9 +73,9 @@ class AuthServices extends AuthServiceBase {
   }
 
   @override
-  Future<SuccessResponse> registerStudent(
+  Future<RegisterResponse> registerTeacher(
     ServiceCall call,
-    RegisterRequest request,
+    RegisterTeacherRequest request,
   ) async {
     try {
       final usersCollection = mogoservice.collection(Collections.users);
@@ -106,7 +109,7 @@ class AuthServices extends AuthServiceBase {
         "is_active": true,
       });
 
-      return SuccessResponse(
+      return RegisterResponse(
         message: "User created successfully. Please login again",
       );
     } on GrpcError {
@@ -119,10 +122,11 @@ class AuthServices extends AuthServiceBase {
   }
 
   @override
-  Future<SuccessResponse> registerTeacher(
+  Future<RegisterResponse> registerStudent(
     ServiceCall call,
-    RegisterRequest request,
+    RegisterStudentRequest request,
   ) {
+    // TODO: implement registerStudent
     throw UnimplementedError();
   }
 }

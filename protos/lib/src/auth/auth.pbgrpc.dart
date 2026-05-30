@@ -1,6 +1,6 @@
 // This is a generated file - do not edit.
 //
-// Generated from auth.proto.
+// Generated from auth/auth.proto.
 
 // @dart = 3.3
 
@@ -20,7 +20,7 @@ import 'auth.pb.dart' as $0;
 
 export 'auth.pb.dart';
 
-@$pb.GrpcServiceName('AuthService')
+@$pb.GrpcServiceName('auth.AuthService')
 class AuthServiceClient extends $grpc.Client {
   /// The hostname for this service.
   static const $core.String defaultHost = '';
@@ -32,21 +32,21 @@ class AuthServiceClient extends $grpc.Client {
 
   AuthServiceClient(super.channel, {super.options, super.interceptors});
 
-  $grpc.ResponseFuture<$0.SuccessResponse> registerStudent(
-    $0.RegisterRequest request, {
+  $grpc.ResponseFuture<$0.RegisterResponse> registerStudent(
+    $0.RegisterStudentRequest request, {
     $grpc.CallOptions? options,
   }) {
     return $createUnaryCall(_$registerStudent, request, options: options);
   }
 
-  $grpc.ResponseFuture<$0.SuccessResponse> registerTeacher(
-    $0.RegisterRequest request, {
+  $grpc.ResponseFuture<$0.RegisterResponse> registerTeacher(
+    $0.RegisterTeacherRequest request, {
     $grpc.CallOptions? options,
   }) {
     return $createUnaryCall(_$registerTeacher, request, options: options);
   }
 
-  $grpc.ResponseFuture<$0.AuthResponse> login(
+  $grpc.ResponseFuture<$0.LoginResponse> login(
     $0.LoginRequest request, {
     $grpc.CallOptions? options,
   }) {
@@ -56,70 +56,76 @@ class AuthServiceClient extends $grpc.Client {
   // method descriptors
 
   static final _$registerStudent =
-      $grpc.ClientMethod<$0.RegisterRequest, $0.SuccessResponse>(
-          '/AuthService/RegisterStudent',
-          ($0.RegisterRequest value) => value.writeToBuffer(),
-          $0.SuccessResponse.fromBuffer);
+      $grpc.ClientMethod<$0.RegisterStudentRequest, $0.RegisterResponse>(
+          '/auth.AuthService/RegisterStudent',
+          ($0.RegisterStudentRequest value) => value.writeToBuffer(),
+          $0.RegisterResponse.fromBuffer);
   static final _$registerTeacher =
-      $grpc.ClientMethod<$0.RegisterRequest, $0.SuccessResponse>(
-          '/AuthService/RegisterTeacher',
-          ($0.RegisterRequest value) => value.writeToBuffer(),
-          $0.SuccessResponse.fromBuffer);
-  static final _$login = $grpc.ClientMethod<$0.LoginRequest, $0.AuthResponse>(
-      '/AuthService/Login',
+      $grpc.ClientMethod<$0.RegisterTeacherRequest, $0.RegisterResponse>(
+          '/auth.AuthService/RegisterTeacher',
+          ($0.RegisterTeacherRequest value) => value.writeToBuffer(),
+          $0.RegisterResponse.fromBuffer);
+  static final _$login = $grpc.ClientMethod<$0.LoginRequest, $0.LoginResponse>(
+      '/auth.AuthService/Login',
       ($0.LoginRequest value) => value.writeToBuffer(),
-      $0.AuthResponse.fromBuffer);
+      $0.LoginResponse.fromBuffer);
 }
 
-@$pb.GrpcServiceName('AuthService')
+@$pb.GrpcServiceName('auth.AuthService')
 abstract class AuthServiceBase extends $grpc.Service {
-  $core.String get $name => 'AuthService';
+  $core.String get $name => 'auth.AuthService';
 
   AuthServiceBase() {
-    $addMethod($grpc.ServiceMethod<$0.RegisterRequest, $0.SuccessResponse>(
-        'RegisterStudent',
-        registerStudent_Pre,
-        false,
-        false,
-        ($core.List<$core.int> value) => $0.RegisterRequest.fromBuffer(value),
-        ($0.SuccessResponse value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$0.RegisterRequest, $0.SuccessResponse>(
-        'RegisterTeacher',
-        registerTeacher_Pre,
-        false,
-        false,
-        ($core.List<$core.int> value) => $0.RegisterRequest.fromBuffer(value),
-        ($0.SuccessResponse value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$0.LoginRequest, $0.AuthResponse>(
+    $addMethod(
+        $grpc.ServiceMethod<$0.RegisterStudentRequest, $0.RegisterResponse>(
+            'RegisterStudent',
+            registerStudent_Pre,
+            false,
+            false,
+            ($core.List<$core.int> value) =>
+                $0.RegisterStudentRequest.fromBuffer(value),
+            ($0.RegisterResponse value) => value.writeToBuffer()));
+    $addMethod(
+        $grpc.ServiceMethod<$0.RegisterTeacherRequest, $0.RegisterResponse>(
+            'RegisterTeacher',
+            registerTeacher_Pre,
+            false,
+            false,
+            ($core.List<$core.int> value) =>
+                $0.RegisterTeacherRequest.fromBuffer(value),
+            ($0.RegisterResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.LoginRequest, $0.LoginResponse>(
         'Login',
         login_Pre,
         false,
         false,
         ($core.List<$core.int> value) => $0.LoginRequest.fromBuffer(value),
-        ($0.AuthResponse value) => value.writeToBuffer()));
+        ($0.LoginResponse value) => value.writeToBuffer()));
   }
 
-  $async.Future<$0.SuccessResponse> registerStudent_Pre($grpc.ServiceCall $call,
-      $async.Future<$0.RegisterRequest> $request) async {
+  $async.Future<$0.RegisterResponse> registerStudent_Pre(
+      $grpc.ServiceCall $call,
+      $async.Future<$0.RegisterStudentRequest> $request) async {
     return registerStudent($call, await $request);
   }
 
-  $async.Future<$0.SuccessResponse> registerStudent(
-      $grpc.ServiceCall call, $0.RegisterRequest request);
+  $async.Future<$0.RegisterResponse> registerStudent(
+      $grpc.ServiceCall call, $0.RegisterStudentRequest request);
 
-  $async.Future<$0.SuccessResponse> registerTeacher_Pre($grpc.ServiceCall $call,
-      $async.Future<$0.RegisterRequest> $request) async {
+  $async.Future<$0.RegisterResponse> registerTeacher_Pre(
+      $grpc.ServiceCall $call,
+      $async.Future<$0.RegisterTeacherRequest> $request) async {
     return registerTeacher($call, await $request);
   }
 
-  $async.Future<$0.SuccessResponse> registerTeacher(
-      $grpc.ServiceCall call, $0.RegisterRequest request);
+  $async.Future<$0.RegisterResponse> registerTeacher(
+      $grpc.ServiceCall call, $0.RegisterTeacherRequest request);
 
-  $async.Future<$0.AuthResponse> login_Pre(
+  $async.Future<$0.LoginResponse> login_Pre(
       $grpc.ServiceCall $call, $async.Future<$0.LoginRequest> $request) async {
     return login($call, await $request);
   }
 
-  $async.Future<$0.AuthResponse> login(
+  $async.Future<$0.LoginResponse> login(
       $grpc.ServiceCall call, $0.LoginRequest request);
 }

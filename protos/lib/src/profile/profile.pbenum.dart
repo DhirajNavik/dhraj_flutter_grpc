@@ -1,6 +1,6 @@
 // This is a generated file - do not edit.
 //
-// Generated from auth/auth.proto.
+// Generated from profile/profile.proto.
 
 // @dart = 3.3
 

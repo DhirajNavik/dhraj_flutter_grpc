@@ -1,0 +1,3 @@
+protoc --dart_out=grpc:lib/src/generated -Iprotos protos/*
+protoc --dart_out=grpc:lib/src -Iprotos protos/user/user.proto  
+protoc --dart_out=grpc:lib/src -Iprotos protos/auth/auth.proto  

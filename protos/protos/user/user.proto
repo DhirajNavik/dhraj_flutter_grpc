@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package user;
+
+enum UserRole {
+  UNKNOWN = 0;
+  ADMIN = 1;
+  TEACHER = 2;
+  STUDENT = 3;
+}
+
+message User {
+  string id = 1;
+  string name = 2;
+  string username = 3;
+  string email = 4;
+  string phone = 5;
+  UserRole role = 6;
+  bool is_active = 7;
+  int64 created_at = 8;
+  int64 updated_at = 9;
+}

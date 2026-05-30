@@ -1,0 +1,15 @@
+
+syntax = "proto3";
+
+package profile;
+
+import "user/user.proto";
+import "google/protobuf/empty.proto";
+
+message MyProfile{
+    user.User user = 1 ;
+}
+
+service ProfileService {
+    rpc FetchMyProfile(google.protobuf.Empty) returns (MyProfile);
+}

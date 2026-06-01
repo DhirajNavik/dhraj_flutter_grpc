@@ -48,20 +48,12 @@ class AuthServices extends AuthServiceBase {
       }
 
       final token = JwtService().generateToken(
-        userId: userData["_id"].toString(),
+        userId: (userData["_id"] as ObjectId).oid,
         role: UserRole.valueOf(userData["role"])?.name ?? "UNKNOWN",
       );
-
-      // final user = User(
-      //   id: userData["_id"].toString(),
-      //   name: userData["name"] ?? "",
-      //   username: userData["username"] ?? "",
-      //   email: userData["email"] ?? "",
-      //   phone: userData["phone"] ?? "",
-      //   role: UserRole.valueOf(userData["role"]) ?? UserRole.UNKNOWN,
-      //   isActive: userData["is_active"] ?? false,
-      // );
+    
       final userRole = UserRole.valueOf(userData["role"]) ?? UserRole.UNKNOWN;
+      
       return LoginResponse(token: token, role: userRole);
     } on GrpcError {
       rethrow;

@@ -1,4 +1,5 @@
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
+import 'package:protos/protos.dart';
 import 'env.dart';
 
 class JwtService {
@@ -10,22 +11,28 @@ class JwtService {
 
   final _secret = env['JWT_SECRET'];
 
-  String generateToken({
-    required String userId,
-    required String role,
-  }) {
+  String generateToken({required String userId, required String role}) {
     if (_secret == null || _secret.isEmpty) {
       throw Exception("JWT_SECRET missing");
     }
 
-    final jwt = JWT({
-      'sub': userId,
-      'role': role,
-    });
+    final jwt = JWT({'sub': userId, 'role': role});
 
-    return jwt.sign(
-      SecretKey(_secret),
-      expiresIn: const Duration(days: 7),
-    );
+    return jwt.sign(SecretKey(_secret), expiresIn: const Duration(days: 7));
+  }
+
+  Map<String, dynamic> verifyToken(String token) {
+    if (_secret == null || _secret.isEmpty) {
+      throw Exception("JWT_SECRET missing");
+    }
+
+    try {
+      final jwt = JWT.verify(token, SecretKey(_secret));
+      return jwt.payload as Map<String, dynamic>;
+    } on JWTExpiredException {
+      throw GrpcError.unauthenticated('Token expired');
+    } on JWTException {
+      throw GrpcError.unauthenticated('Invalid token');
+    }
   }
 }

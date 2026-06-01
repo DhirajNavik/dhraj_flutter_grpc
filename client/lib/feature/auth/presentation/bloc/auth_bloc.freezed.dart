@@ -429,13 +429,13 @@ return error(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( LoginEntity user)?  authenticated,TResult Function( String user)?  registerStudent,TResult Function( String message)?  error,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function()?  authenticated,TResult Function( String message)?  registerStudent,TResult Function( String message)?  error,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
 return loading();case _Authenticated() when authenticated != null:
-return authenticated(_that.user);case _Messgae() when registerStudent != null:
-return registerStudent(_that.user);case _Error() when error != null:
+return authenticated();case _Messgae() when registerStudent != null:
+return registerStudent(_that.message);case _Error() when error != null:
 return error(_that.message);case _:
   return orElse();
 
@@ -454,13 +454,13 @@ return error(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( LoginEntity user)  authenticated,required TResult Function( String user)  registerStudent,required TResult Function( String message)  error,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function()  authenticated,required TResult Function( String message)  registerStudent,required TResult Function( String message)  error,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case _Loading():
 return loading();case _Authenticated():
-return authenticated(_that.user);case _Messgae():
-return registerStudent(_that.user);case _Error():
+return authenticated();case _Messgae():
+return registerStudent(_that.message);case _Error():
 return error(_that.message);case _:
   throw StateError('Unexpected subclass');
 
@@ -478,13 +478,13 @@ return error(_that.message);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( LoginEntity user)?  authenticated,TResult? Function( String user)?  registerStudent,TResult? Function( String message)?  error,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function()?  authenticated,TResult? Function( String message)?  registerStudent,TResult? Function( String message)?  error,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case _Loading() when loading != null:
 return loading();case _Authenticated() when authenticated != null:
-return authenticated(_that.user);case _Messgae() when registerStudent != null:
-return registerStudent(_that.user);case _Error() when error != null:
+return authenticated();case _Messgae() when registerStudent != null:
+return registerStudent(_that.message);case _Error() when error != null:
 return error(_that.message);case _:
   return null;
 
@@ -561,76 +561,42 @@ String toString() {
 
 
 class _Authenticated implements AuthState {
-  const _Authenticated(this.user);
+  const _Authenticated();
   
 
- final  LoginEntity user;
 
-/// Create a copy of AuthState
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$AuthenticatedCopyWith<_Authenticated> get copyWith => __$AuthenticatedCopyWithImpl<_Authenticated>(this, _$identity);
+
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Authenticated&&(identical(other.user, user) || other.user == user));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Authenticated);
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,user);
+int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'AuthState.authenticated(user: $user)';
+  return 'AuthState.authenticated()';
 }
 
 
 }
 
-/// @nodoc
-abstract mixin class _$AuthenticatedCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
-  factory _$AuthenticatedCopyWith(_Authenticated value, $Res Function(_Authenticated) _then) = __$AuthenticatedCopyWithImpl;
-@useResult
-$Res call({
- LoginEntity user
-});
 
 
-
-
-}
-/// @nodoc
-class __$AuthenticatedCopyWithImpl<$Res>
-    implements _$AuthenticatedCopyWith<$Res> {
-  __$AuthenticatedCopyWithImpl(this._self, this._then);
-
-  final _Authenticated _self;
-  final $Res Function(_Authenticated) _then;
-
-/// Create a copy of AuthState
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? user = null,}) {
-  return _then(_Authenticated(
-null == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
-as LoginEntity,
-  ));
-}
-
-
-}
 
 /// @nodoc
 
 
 class _Messgae implements AuthState {
-  const _Messgae(this.user);
+  const _Messgae(this.message);
   
 
- final  String user;
+ final  String message;
 
 /// Create a copy of AuthState
 /// with the given fields replaced by the non-null parameter values.
@@ -642,16 +608,16 @@ _$MessgaeCopyWith<_Messgae> get copyWith => __$MessgaeCopyWithImpl<_Messgae>(thi
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Messgae&&(identical(other.user, user) || other.user == user));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Messgae&&(identical(other.message, message) || other.message == message));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,user);
+int get hashCode => Object.hash(runtimeType,message);
 
 @override
 String toString() {
-  return 'AuthState.registerStudent(user: $user)';
+  return 'AuthState.registerStudent(message: $message)';
 }
 
 
@@ -662,7 +628,7 @@ abstract mixin class _$MessgaeCopyWith<$Res> implements $AuthStateCopyWith<$Res>
   factory _$MessgaeCopyWith(_Messgae value, $Res Function(_Messgae) _then) = __$MessgaeCopyWithImpl;
 @useResult
 $Res call({
- String user
+ String message
 });
 
 
@@ -679,9 +645,9 @@ class __$MessgaeCopyWithImpl<$Res>
 
 /// Create a copy of AuthState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? user = null,}) {
+@pragma('vm:prefer-inline') $Res call({Object? message = null,}) {
   return _then(_Messgae(
-null == user ? _self.user : user // ignore: cast_nullable_to_non_nullable
+null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }

@@ -1,8 +1,6 @@
 import 'dart:async';
-import 'dart:developer';
-
-import 'package:bloc/bloc.dart';
-import 'package:client/feature/auth/domain/entities/login_entities.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:client/config/secure/secure_storage.dart';
 import 'package:client/feature/auth/domain/params/login_params.dart';
 import 'package:client/feature/auth/domain/params/register_params.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -31,15 +29,15 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     final result = await _loginUseCase(event.params);
 
-    log(result.toString(),name: "---------->");
-
-    result.match(
+    await result.match(
       (failure) {
-        log("Im Here");
         emit(AuthState.error(failure.message));
       },
-      (response) {
-        emit(AuthState.authenticated(response));
+      (response) async {
+        await SessionController.instance.setSession(
+          SecureModel(token: response.token, role: response.role),
+        );
+        emit(AuthState.authenticated());
       },
     );
   }

@@ -74,7 +74,7 @@ class _MobileLoginWigetState extends State<MobileLoginWidget>
                   listener: (context, state) {
                     state.maybeWhen(
                       orElse: () {},
-                      authenticated: (user) {
+                      authenticated: () {
                         serviceLocater<GoRouter>().go(AppRoute.home.path);
                       },
                       error: (message) {

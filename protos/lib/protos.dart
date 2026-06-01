@@ -15,3 +15,4 @@ export 'src/profile/profile.pbgrpc.dart';
 export 'src/profile/profile.pbjson.dart';
 
 export  'package:grpc/grpc.dart';
+export 'package:protobuf/well_known_types/google/protobuf/empty.pb.dart';

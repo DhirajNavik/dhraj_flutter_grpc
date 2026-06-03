@@ -6,11 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
 
+  WidgetsFlutterBinding.ensureInitialized();
   await SessionController.instance.init();
   initDependencies();
   runApp(
     MultiBlocProvider(providers: AppProviders.provider, child: const MyApp()),
   );
+
 }
